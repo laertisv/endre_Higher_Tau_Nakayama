@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Nakayama Tau_d - Mutation graph</title>
+
+  <link rel="stylesheet" href="stylesheet.css">
+  <script src="./cytoscape-and-extensions/cytoscape.min.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  <script src="./js/mutation/generateAndMutate.js"></script>
+  <script src="./js/mutation/mutation.js"></script>
+  
+    
+  <style>
+    #displayDivForARQuiver {
+        width: 100%;
+        height: 300px !important;
+        position: relative;
+        border:1px solid black;
+        display: block;
+        float:left;    
+    }
+    .runningText, #menuChooseAlgebra, #menuMutate{
+    width: 650px;
+    margin:auto;
+    overflow: auto;
+    }
+
+
+#MutateFromSupport {
+    background-color: rgba(100,149,237,0.7);
+}
+#MutateFromRigid {
+    background-color: rgba(178,34,34,0.7);
+}
+#MutateFromSupport:hover {
+    background-color: rgba(100,149,237,0.5);
+}
+#MutateFromRigid:hover {
+    background-color: rgba(178,34,34,0.5);
+}
+#MutateFromSupport:active {
+    background-color: rgba(100,149,237,1);
+}
+#MutateFromRigid:active {
+    background-color: rgba(178,34,34,1);
+}
+
+.pdf{
+  width: 100%;
+  aspect-ratio: 4/3;
+}
+  </style>
+    
+    <script>
+      /* Ensure number input in menu field */
+      function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57)){
+          return false;
+        }
+        return true;
+        }
+    </script>
+    
+</head>
+<body>
+
+<div class="runningText">
+  <h1>Mutation of \(\tau_d\)-tilting pairs</h1>
+  <p><a href="./index.html">Home</a> | <a href="./construct.html">\(\tau_d\)-rigid pairs</a> | <a href="./mutationgraph.html">Mutation</a></p>
+  <p>This website intends to help illustrate the paper <cite>\(\tau_d\)-tilting theory for Nakayama algebras</cite> [RV24].</p>
+
+
+  <h2>
+    Preliminary
+  </h2>
+  <p>
+    We are working with linear Nakayama algebras with homogeneous relations, admitting a \(d\)-cluster tilting subcategory \(\mathcal{C}\). 
+    Specifically, for an algebraically closed field \(\mathbf{k}\), we are working with the algebras \(\Lambda(n,l)=\mathbf{k}\mathbb{A}_n/R^l\), where \(R\) is the arrow ideal of the quiver \(\mathbb{A}_n\) given by
+    $$ n\longrightarrow n-1 \longrightarrow \cdots \longrightarrow 2 \longrightarrow 1 .$$
+    The indecomposable modules of \(\operatorname{mod}\Lambda\) are uniquely given through their support on \(\mathbb{A}_n\), which can be described as subintervals of \([1,n]\). 
+    Hence, they will be denoted by \(M(a,b)\), where \([a,b]\) is their support-interval.
+  </p> 
+  <p>
+    For some more preliminary information on the \(d\)-cluster tilting subcategory of \(\Lambda(n,l)\) and the possibility of constructing your own \(\tau_d\)-rigid pair, visit <a href="./construct.html">here.</a> 
+    Note that a <em>strongly maximal \(\tau_d\)-rigid pair</em> \((M,P)\) is a \(\tau_d\)-rigid pair of \(\mathcal{C}\) such that for any other \(\tau_d\)-rigid pair \((N,Q)\) we have \(|N|+|Q|\leq |M|+|P|\). 
+    We have shown that for \(\Lambda(n,l)\) a \(\tau_d\)-rigid pair \((M,P)\) is strongly maximal if and only if \(|M|+|P|=n\).
+  </p>
+  
+  <h2>Mutation</h2>
+  <p>
+    The paper [RV24] only deals with the concept of mutation on a surface level, however as it bears witness of the over-arching structure we provide some of our findings here. 
+  </p>
+  <figure class="definition">
+    <p>
+      Let \((M,P)\) and \((M',P')\in \mathcal{C}\times \operatorname{proj}\Lambda\) be strongly maximal \(\tau_d\)-rigid pairs of \(\Lambda(n,l)\). 
+      If there exists a pair \((N,Q)\in\mathcal{C}\times\operatorname{proj}\Lambda\) that is a summand of both \((M,P)\) and \((M',P')\), and \(|N|+|Q|=n-1\), then \((M,P)\) and \((M',P')\) are <em>mutations of each other</em>.
+    </p>
+  </figure>
+  <p>
+    The first observation we want to share is that the \(\tau_d\)-mutation graph of strongly maximal \(\tau_d\)-rigid pairs (<em>sm-\(\tau_d\)-mutation graph</em> for short) over \(\Lambda(n,l)\) is connected [RV, Proposition 6.10]. 
+    This is not true in general, see the following example:
+  </p>
+  
+  <figure class="example">
+    <p>
+      The sm-\(\tau_d\)-mutation graphs aren't necessarily connected. Consider for example the cyclic Nakayama algebra \(\Delta(3,7)=\mathbf{k}\tilde{\mathbb{A}}_3/R^7\), where \(\tilde{\mathbb{A}}_3\) is given by
+    </p>
+    <img src="./resources/A3tilde.png" alt="A3 tilde" width="200px" class="commutativeDiagram">
+    <p>
+      In \(\operatorname{mod}\Delta(3,7)\) we choose the \(2\)-cluster tilting subcategory \(\mathcal{C}\) given by the filled nodes in the AR-quiver below.
+    </p>
+    <img src="./resources/nonConnected.png" alt="AR quiver of Delta" class="commutativeDiagram" width="250px">
+    <p>
+      The sm-\(\tau_2\)-mutation graph of \(\mathcal{C}\) consist of two components:
+    </p>
+    <img src="./resources/nonConnected2.png" alt="sm-tau2-mutation graph of Delta" class="commutativeDiagram" width="550px">
+  </figure>
+
+  <p>
+    We further showed that when \(\Lambda(n,l)\) is \(d\)-representation finite, the sm-\(\tau_d\)-mutation graph is an extended Dynkin graph of type \(\tilde{\mathbb{A}}\) with \(2n+l-1\) vertices [RV, Prop. 6.12]. 
+    This is not something that holds for \(d\)-representation finite algebras in general, a counterexample is given by the Auslander algebra of type \(\mathbb{A}_3\) (see <a href="#mutationGraphAuslanderA3">further below</a>).
+  </p>
+  <figure class="example">
+    <p>
+      The sm-\(\tau_2\)-mutation graph of the \(2\)-representation finite algebra \(\Lambda(4,3)\) is
+    </p>
+    <img src="./resources/A43mutation.png" alt="Lambda (4,3) mutation" width="100%" class="commutativeDiagram">
+  </figure>
+  
+  <p>
+    Even for \(\Lambda(n,l)\) the complexity of the sm-\(\tau_d\)-mutation graph increases quite rapidly when you move away from the \(d\)-representation finite case.
+    Below we have included the sm-\(\tau_2\)-mutation graph of \(\Lambda(9,3)\) to exemplify this <a href="#mutationGraphLambda93">further below</a>.
+  </p>
+
+  <h2>
+    Mutate yourself!
+  </h2>
+  <p>
+    Below you can generate an algebra \(\Lambda(n,l)\) which admit a \(d\)-cluster tilting subcategory, by choosing \(d\), \(p\) and \(l\) appropriately. The module category will be represented as it's AR-quiver where each vertex is an indecomposable. The darker vertices are indecomposables in the \(d\)-cluster tilting subcategory.
+  </p>
+  <p>
+    With a given \(\tau_d\)-rigid pair with \(n\) summands, you can choose a summand to mutate in. The summands which can be mutated will be displayed with a green or orange border, as well as an arrow. You can either choose to start with
+    <ol>
+      <li>
+        the pair \((\Lambda,0)\), 
+      </li>
+      <li>
+        the pair \((0,\Lambda)\), or
+      </li>
+      <li>
+        a pair \((M,P)\) of your choosing, given through a list of it's summands.
+      </li>
+    </ol>
+    Nodes selected as a summand of \(M\) will be colored <span class="rigidText">red</span>, and nodes selected as a summand of \(P\) will be colored <span class="supportText">blue</span>. 
+    
+    
+  </p>
+</div>
+<div id="menuChooseAlgebra">
+  <h4>Choose an algebra</h4>
+        <form name="menuConstructTaudPairForm" action="">
+            <label for="constructTaudPair_d">\(d=\)</label>
+            <input type="number" required min="2" max="6" id="constructTaudPair_d" value="2" onkeypress="return isNumberKey(event)">
+            <label for="constructTaudPair_l">\(l=\)</label>
+            <input type="number" required min="2" max="8" id="constructTaudPair_l" value="3" onkeypress="return isNumberKey(event)">
+            <label for="constructTaudPair_p">\(p=\)</label>
+            <input type="number" required min="2" max="8" id="constructTaudPair_p" value="4" onkeypress="return isNumberKey(event)"><br>
+            <label class="switch">
+              <span class="labelSwitch">View morphisms</span>
+              <input type="checkbox" checked="false" name="edgeShow" onchange="showEdges=this.checked;cy.filter('edge').toggleClass('noShow') " autocomplete="off">
+              <span class="slider"></span>  
+            </label> 
+
+            <button type="button" class="updateButton" onclick="updateARquiverOnInput()"> Update</button><br>
+            <span id="ErrorMessageConstructMenu" ></span><br>
+            <button type="button" hidden id="resetConfirmation">Proceed</button>
+            <button type="button" hidden id="resetCancel">Cancel</button>
+        </form>
+        <h4>Choose a pair to start mutating from</h4>
+        <button id="MutateFromRigid" title="Start with \((\Lambda,0)\)" onclick="startWithRigid()">Start with \((\Lambda,0)\)</button>
+        <button id="MutateFromSupport" title="Start with \((0,\Lambda)\)" onclick="startWithSupport()">Start with \((0,\Lambda)\)</button>
+        <button id="MutateFromOwnSelection" title="Start with user selection" onclick="startWithChosen()">Start with \((M,P)\)</button>
+        <form name="menuChooseOwnMutationStart" action="">
+          <label for="chooseRigidSummands" class="rigidText">\(M=\)</label>
+          <input type="text" id="chooseRigidSummands">
+          <label for="chooseSupportSummands" class="supportText">\(P=\)</label>
+          <input type="text" id="chooseSupportSummands">
+        </form>
+        <span id="ErrorMessageOwnSelection" ></span><br>
+</div>
+<div id="displayDivForARQuiver"></div>
+<div id="menuMutate">
+<button id="MutateButton" title="Mutate at selected summand" disabled>Mutate at \(X\)</button>
+<button id="undoMutateButton" title="Undo mutation" disabled>Undo</button>
+</div>
+
+<div class="runningText">
+  <h2 id="mutationGraphLambda93">Mutation graph of \(\Lambda(9,3)\)</h2>
+<p>
+  There are in total \(160\) different strongly maximal \(\tau_2\)-rigid pairs in the \(2\)-cluster tilting subcategory of \(\operatorname{mod}\Lambda(9,3)\). A pair here have at most \(6\) possible mutations and at least \(3\).<br> <a href="./resources/CompleteGraph.pdf">Click here to download pdf</a>.
+</p>
+  <object class="pdf" data="./resources/CompleteGraph.pdf">
+  </object>
+  <h2 id="mutationGraphAuslanderA3">
+    Mutation graph of the Auslander algebra of \(\mathbb{A}_3\)
+  </h2>
+  <p>
+    We are now working over the algebra given by the following quiver with relations:
+  </p>
+  <img src="./resources/AuslanderA3.png" width="200px" alt="Auslander A3" class="commutativeDiagram">
+  <p>
+    This is a \(2\)-representation finite algebra. The \(2\)-cluster tilting subcategory is given by the indecomposables marked with a filled circle in the following AR-quiver. We have also drawn the non-trivial actions of \(\tau_2\) on the indecomposables with green arrows.
+  </p>
+  <img src="./resources/ARQuiverAuslanderA3.png" width="100%" alt="Auslander Reiten quiver of the Auslander algebra of type linear A3" class="commutativeDiagram">
+  <p>
+    There are in total \(40\) strongly maximal \(\tau_2\)-rigid pairs. The nodes in the sm-\(\tau_2\)-mutation graph have either 3 or 4 edges. <br> <a href="./resources/mutationGraphAuslanderA3.pdf">Click here to download pdf</a>.
+  </p>
+  <object class="pdf" data="./resources/mutationGraphAuslanderA3.pdf">,
+  </object>
+</div>
+
+<div class="references">
+  <h2>References</h2>
+  <ul>
+    <li author-shorthand="RV24">
+      Endre S. Rundsveen and Laertis Vaso. <cite>\(\tau_d\)-tilting theory for Nakayama algebras</cite>, arXiv preprint <a href="https://arxiv.org/abs/2410.19505">arXiv:2410.19505</a> (2024), 
+    </li>
+  </ul>
+</div>
+
+<script>
+    drawARquiver(2,4,3,"displayDivForARQuiver");
+</script>
+</body>
+</html>

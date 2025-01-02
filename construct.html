@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Nakayama Tau_d - Find tau_d-rigid pairs</title>
+
+  <link rel="stylesheet" href="stylesheet.css">
+  <script src="./cytoscape-and-extensions/cytoscape.min.js"></script>
+  <script src="./cytoscape-and-extensions/cytoscape-cxtmenu.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="./js/main.js"></script>
+  <script src="./js/constructAlgebra.js"></script>
+  <script src="./js/displayAndInteract.js"></script>
+    
+  
+
+    <script>
+      /* Ensure number input in menu field */
+      function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57)){
+          return false;
+        }
+        return true;
+        }
+    </script>
+    
+</head>
+<body>
+  <div id="mainContainer">
+    <div id="mainText">
+    <h1>Find \(\tau_d\)-rigid pairs for Nakayama algebras</h1>
+    <p><a href="./index.html">Home</a> | <a href="./construct.html">\(\tau_d\)-rigid pairs</a> | <a href="./mutationgraph.html">Mutation</a></p>
+    <p>This website intends to help illustrate the paper <cite>\(\tau_d\)-tilting theory for Nakayama algebras</cite> [RV24].</p>
+    <h2>
+      Preliminary
+    </h2>
+    <p>
+      We are working with linear Nakayama algebras with homogeneous relations, admitting a \(d\)-cluster tilting subcategory. 
+      Specifically, for an algebraically closed field \(\mathbf{k}\), we are working with the algebras \(\Lambda(n,l)=\mathbf{k}\mathbb{A}_n/R^l\), where \(R\) is the arrow ideal of the quiver \(\mathbb{A}_n\) given by
+      $$ n\longrightarrow n-1 \longrightarrow \cdots \longrightarrow 2 \longrightarrow 1 .$$
+      The indecomposable modules of \(\operatorname{mod}\Lambda\) are uniquely given through their support on \(\mathbb{A}_n\), which can be described as subintervals of \([1,n]\). 
+      Hence, they will be denoted by \(M(a,b)\), where \([a,b]\) is their support-interval. Having this description, we can easily describe the morphism spaces between two indecomposables as follows:
+    </p>
+    <figure class="lemma">
+      <figcaption>[Ada16, Lemma 2.4]</figcaption>
+      <p>
+        Let \(M(a,b)\) and \(M(c,d)\) be indecomposable \(\Lambda(n,l)\)-modules. The following conditions are equivalent:
+        <ol>
+          <li>
+            \(\operatorname{Hom}_\Lambda(M(a,b),M(c,d))\neq 0\)
+          </li>
+          <li>
+            \(\operatorname{Hom}_\Lambda(M(a,b),M(c,d))= \mathbf{k}\)
+          </li>
+          <li>
+            \(b\in [c,d]\) and \(c\in [a,b]\)
+          </li>
+        </ol>
+      </p>
+    </figure>
+
+    <p>
+      We will be making use of the following classification given by Laertis Vaso in [Vas19]:
+    </p>
+    <figure class="theorem">
+      <figcaption>[Vas19, Theorem 2]</figcaption>
+      <p>Let \(\Lambda=\Lambda(n,l)\). There exists a \(d\)-cluster tilting subcategory \(\mathcal{C}\subseteq \operatorname{mod}\Lambda\) if and only if there exists \(p> 1\) such that
+      $$ n=(p-1)\left(\frac{d-1}{2}l+1\right)+\frac{l}{2} $$ 
+      and either
+      <ol>
+        <li>\(l=2\), or</li>
+        <li> \(l>2\) and both \(d\) and \(p\) are even</li>
+      </ol>
+      holds. The \(d\)-cluster tilting subcategory is then given by
+      $$ \mathcal{C}=\mathrm{add}\left(\bigoplus_{r=0}^{p-1}\tau_d^{-r}(\Lambda)\right). $$
+      </p>
+    </figure>
+
+    <p>
+      The purpose of this page is to get familiar with \(\tau_d\)-rigid pairs of \(\Lambda(n,l)\), so let us also state the definition:
+    </p>
+
+    <figure class="definition">
+      <p>
+        A pair \((M,P)\in \mathcal{C}\times \operatorname{proj}\Lambda\) is a \(\tau_d\)-rigid pair provided that
+        <ol>
+          <li>
+            \(\operatorname{Hom}_\Lambda(M,\tau_d M)=0\), and
+          </li>
+          <li>
+            \(\operatorname{Hom}_\Lambda(P,M)=0\).
+          </li>
+        </ol>
+      </p>
+    </figure>
+
+    <p>
+      In [RV24, Theorem A] we show that the maximal amount of summands a \(\tau_d\)-rigid pair of \(\Lambda(n,l)\) can have is \(n\). We invite to try find different pairs attaining this limit in the graph below.
+    </p>
+
+    <h2>
+      Functionality of the graph
+    </h2>
+    <p>
+      Below you can generate an algebra \(\Lambda(n,l)\) which admit a \(d\)-cluster tilting subcategory, by choosing \(d\), \(p\) and \(l\) appropriately. The module category will be represented as it's AR-quiver where each vertex is an indecomposable. The darker vertices are indecomposables in the \(d\)-cluster tilting subcategory.
+    </p>
+    <p>
+      In the graph of the AR-quiver you can construct your own \(\tau_d\)-rigid pair, summand by summand. You add summands by either
+      <ol>
+        <li>
+          pressing on a node and selecting if it should be added as a summand of \(M\) or \(P\) in the menu that appears, 
+        </li>
+        <li>
+          selecting a node and add it in the menu below, or
+        </li>
+        <li>
+          list the summands in \(M\) and summands in \(P\).
+        </li>
+      </ol>
+      Nodes selected as a summand of \(M\) will be colored <span class="rigidText">red</span>, and nodes selected as a summand of \(P\) will be colored <span class="supportText">blue</span>. Note that only projective nodes can be added to \(P\) and that the previously selected nodes puts restrictions on which nodes you can choose next. 
+      The information on what can't be chosen will be displayed as follows.
+      <ul>
+        <li>
+          Nodes labeled <span class="supportText" style="font-size: larger;">&#8855;</span> can't be chosen as summand of \(P\),
+        </li>
+        <li>
+          nodes labeled <span class="rigidText" style="font-size: larger;">&#215;</span> can't be chosen as a summand of \(M\), and
+        </li>
+        <li>
+          nodes labeled <span style="font-size: larger;">&#8864;</span> can't be chosen as a summand of \(M\) nor of \(P\).
+        </li>
+      </ul>
+      
+    </p>
+  </div>
+<div id="theGraphWithMenu">
+  <div id="upperMenu">
+    <h2>The graph</h2>
+    <div id="menuConstructTaudPair">
+      <h4>General settings</h4>
+        <form name="menuConstructTaudPairForm" action="">
+            <label for="constructTaudPair_d">\(d=\)</label>
+            <input type="number" required min="2" max="6" id="constructTaudPair_d" value="2" onkeypress="return isNumberKey(event)">
+            <label for="constructTaudPair_l">\(l=\)</label>
+            <input type="number" required min="2" max="8" id="constructTaudPair_l" value="3" onkeypress="return isNumberKey(event)">
+            <label for="constructTaudPair_p">\(p=\)</label>
+            <input type="number" required min="2" max="8" id="constructTaudPair_p" value="4" onkeypress="return isNumberKey(event)"><br>
+            <label class="switch">
+              <span class="labelSwitch">View morphisms</span>
+              <input type="checkbox" checked="false" name="edgeShow" onchange="showEdges=this.checked;cy.filter('edge').toggleClass('noShow') " autocomplete="off">
+              <span class="slider"></span>  
+            </label> 
+
+            <button type="button" class="updateButton" onclick="updateARquiverOnInput()"> Update</button><br>
+            <span id="ErrorMessageConstructMenu"></span><br>
+            <button type="button" hidden id="resetConfirmation">Proceed</button>
+            <button type="button" hidden id="resetCancel">Cancel</button>
+        </form>
+        
+    </div>
+    <div id="infoBox">
+      <h4>Nakayama algebra and selected pair</h4>
+      <p>
+        \(n=|\Lambda|=\) <span id="numberSimplesAlgebra"></span>
+      </p>
+      <p>
+        \({\color{rgb(178, 34, 34)}|M|} + {\color{rgb(100, 149, 237)}|P|}=\) <span id="sumOfChosenSummands">0</span>
+      </p>
+      <form name="menuChooseWithInput" action="">
+        <label for="chooseRigidSummands" class="rigidText">\(M=\)</label>
+        <input type="text" id="chooseRigidSummands">
+        <label for="chooseSupportSummands" class="supportText">\(P=\)</label>
+        <input type="text" id="chooseSupportSummands">
+      </form>
+      <button id="updateOwnSelection" onclick="updateSelectionOnUserInput()">Update selection</button><br>
+      <span id="ErrorMessageOwnSelection"></span><br>
+    </div>
+  </div>
+  <div id="displayDivForARQuiver"></div>
+</div>
+    <div class="constructTaudPair">
+      <div id="addSummandsMenu">
+        <div id="addSummandsMenuSelectedInfo">
+            <h4>Add/Remove summands</h4>
+            <em>Select an indecomposable in the graph.</em><br>
+            Module: <span id="addSumModuleSelected">No module selected</span><br>
+            Projective: <span id="addSumModuleProjective"></span><br>
+            \(\tau_d\): <span id="addSumModuledARtranslate"></span>
+        </div>
+        <div id="AddSummandsMenuSelectedButtons">
+          <button id="addSummandToRigid" title="Select a summand to add to M" disabled> Add to M</button> 
+          <button id="addSummandToSupport" title="Select a projective summand to add to P" disabled> Add to P</button>
+          <button id="RemoveSummand" title="Select a summand to remove from the pair" disabled> Remove</button>
+        </div>
+      </div>
+        
+    </div>
+
+    <div class="references">
+      <h2>References</h2>
+      <ul>
+        <li author-shorthand="Ada16">
+          Takahide Adachi. <cite>The classification of \(\tau\)-tilting modules over Nakayama algebras</cite>, J. Algebra, <span style="font-weight: bold;">452</span> (2016), 227–262, <a href="https://doi.org/10.1090/proc/13162">doi:10.1090/proc/13162</a>, MR<a href="https://mathscinet.ams.org/mathscinet/article?mr=3461065">3461065</a>
+        </li>
+        <li author-shorthand="RV24">
+          Endre S. Rundsveen and Laertis Vaso. <cite>\(\tau_d\)-tilting theory for Nakayama algebras</cite>, arXiv preprint <a href="https://arxiv.org/abs/2410.19505">arXiv:2410.19505</a> (2024), 
+        </li>
+        <li author-shorthand="Vas19">
+          Laertis Vaso. <cite>\(n\)-cluster tilting subcategories of representation-directed algebras</cite>, J. Pure Appl. Algebra, <span style="font-weight: bold;">223</span> (2019), no. 5, 2101-2122, <a href="https://doi.org/10.1016/j.jpaa.2018.07.010">doi:10.1016/j.jpaa.2018.07.010</a>, MR<a href="https://mathscinet.ams.org/mathscinet/article?mr=3906542">3906542</a>
+        </li>
+      </ul>
+    </div>
+    
+  </div>
+</body>
+<script>
+  
+  nakayamaAlgebra = new makeModuleCategory(init_d,init_p,init_l);
+  cy = cytoscape({
+        container: document.getElementById('displayDivForARQuiver')
+  });
+  drawARquiver(2,4,3,'displayDivForARQuiver');
+</script>
+</html>

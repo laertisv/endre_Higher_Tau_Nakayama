@@ -1,0 +1,354 @@
+body {
+    counter-reset: theorem;
+    line-height: 1.4;
+    font-size:18px;
+    color:#444;
+}
+h1,h2,h3,h4{
+    line-height:1.2;
+}
+
+/* #mainContainer {
+        width:1080px;
+        margin-left:auto;
+        margin-right:auto;
+      }*/
+#displayDivForARQuiver {
+    width: 100%;
+    height: 300px !important;
+    position: relative;
+    border:1px solid black;
+    display: block;
+    float:left;    
+}
+#mainText, #addSummandsMenu, .references, #upperMenu {
+    width: 650px;
+    margin:auto;
+    overflow: auto;
+}
+
+.commutativeDiagram {
+    display: block;
+    margin: auto;
+}
+
+/* #### Style for menus #### */
+
+#addSummandsMenuSelectedInfo {
+    width:400px;
+    position: relative;
+    display: block;
+    float: left;
+}
+
+#AddSummandsMenuSelectedButtons {
+    width:200px;
+    position: relative;
+    display: block;
+    float: left;
+}
+
+
+#menuConstructTaudPair {
+    padding:0;
+    width:100%;
+}
+
+#infoBox {
+    padding:0;
+    width:100%;
+}
+
+
+
+#ErrorMessageConstructMenu, #ErrorMessageOwnSelection {
+    color: red;
+}
+
+input[type=number]{
+    padding: 5px 10px;
+    margin: 5px 5px  5px 0;
+}
+input[type=text]{
+    padding: 5px 10px;
+    margin: 5px 5px  5px 0;
+}
+
+/* The switch - the box around the slider */
+.switch {
+position: relative;
+display: inline-block;
+width: 60px;
+height: 30px;
+margin-right:10rem;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+display: none;
+}
+
+/* The slider */
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+border-radius: 20px;
+background-color: #ccc;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+.slider:before {
+position: absolute;
+content: "";
+height: 26px;
+width: 26px;
+left: 2px;
+top: 2px;
+border-radius: 50%;
+background-color: white;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+input:checked + .slider {
+background-color: DodgerBlue ;
+}
+
+input:focus + .slider {
+box-shadow: 0 0 1px DodgerBlue ;
+}
+
+input:checked + .slider:before {
+-webkit-transform: translateX(30px);
+-ms-transform: translateX(30px);
+transform: translateX(30px);
+}
+.switch .labelSwitch {
+position: absolute;
+right: -9rem;
+top: 25%;
+}
+
+
+
+
+.rigidText {
+color: rgb(178, 34, 34);
+font-weight: bold;
+}
+.supportText {
+color: rgb(100, 149, 237);
+font-weight: bold;
+}
+
+
+/* Buttons */
+
+button {
+    min-height: 60px;
+    width: 200px;
+    margin:3px;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 10px;
+    padding: 20px 20px 20px 20px;
+    transition-duration: .4s;
+    background-color: rgba(120,120,120,.9) ;
+    color:white;
+    border:none;
+}
+button:hover{
+    background-color: rgba(120,120,120,.7) ;
+}
+button:active{
+    background-color: rgba(120,120,120,1) ;
+}
+#resetCancel,#undoMutateButton {
+    background-color: transparent;
+    border: 1px solid rgba(120,120,120,.9);
+    color:#444;
+}
+#resetCancel:hover {
+    border: 3px solid rgba(120,120,120,.9);
+}
+#resetCancel:active {
+    background-color: rgba(120,120,120,.3) ;
+}
+
+#addSummandsMenu button {
+    display: block;
+    margin: 10px auto 10px auto;
+}
+
+.updateButton {
+    display: block;
+}
+button:disabled {
+    opacity: .33;
+    cursor: not-allowed;
+}
+
+#addSummandToSupport {
+    background-color: rgba(100,149,237,0.7);
+}
+#addSummandToRigid {
+    background-color: rgba(178,34,34,0.7);
+}
+#addSummandToSupport:hover {
+    background-color: rgba(100,149,237,0.5);
+}
+#addSummandToRigid:hover {
+    background-color: rgba(178,34,34,0.5);
+}
+#addSummandToSupport:active {
+    background-color: rgba(100,149,237,1);
+}
+#addSummandToRigid:active {
+    background-color: rgba(178,34,34,1);
+}
+
+/* ##### Theorem environments ##### */
+
+/* Theorem */
+.theorem {
+    margin: 0 0 1em 1em;
+    font-style: italic;
+}
+.theorem::before{
+    counter-increment: theorem;
+    content: "Theorem " counter(theorem) ;
+    font-weight: bold;
+    font-style:normal;
+}
+.theorem figcaption::before {
+    content: "(";
+}
+.theorem figcaption::after {
+    content: ")\A";
+    white-space: pre;
+}
+.theorem figcaption {
+    display: inline;
+    font-style: normal;
+}
+.theorem p {
+    display: inline;
+}
+
+/* Lemma */
+.lemma {
+    margin: 0 0 1em 1em;
+    font-style: italic;
+}
+.lemma::before{
+    counter-increment: theorem;
+    content: "Lemma " counter(theorem) ;
+    font-weight: bold;
+    font-style:normal;
+}
+.lemma figcaption::before {
+    content: "(";
+}
+.lemma figcaption::after {
+    content: ")\A";
+    white-space: pre;
+}
+.lemma figcaption {
+    display: inline;
+    font-style: normal;
+}
+.lemma p {
+    display: inline;
+}
+
+/*definition*/
+.definition {
+    margin: 0 0 1em 1em;
+}
+.definition::before{
+    counter-increment: theorem;
+    content: "Definition " counter(theorem) ;
+    font-weight: bold;
+    font-style: normal;
+}
+.definition p {
+    display: inline;
+    font-style: normal;
+}
+
+/* Propositions*/
+
+.proposition {
+    margin: 0 0 1em 1em;
+    font-style: italic;
+}
+.proposition::before{
+    counter-increment: theorem;
+    content: "Proposition " counter(theorem) ;
+    font-weight: bold;
+    font-style:normal;
+}
+.proposition figcaption::before {
+    content: "(";
+}
+.proposition figcaption::after {
+    content: ")\A";
+    white-space: pre;
+}
+.proposition figcaption {
+    display: inline;
+    font-style: normal;
+}
+.proposition p {
+    display: inline;
+}
+
+/* Example */
+
+.example {
+    margin: 0 0 1em 1em;
+    font-style: normal;
+}
+.example::before{
+    counter-increment: theorem;
+    content: "Example " counter(theorem) ;
+    font-weight: bold;
+    font-style:normal;
+}
+.example figcaption::before {
+    content: "(";
+}
+.example figcaption::after {
+    content: ")\A";
+    white-space: pre;
+}
+.example figcaption {
+    display: inline;
+    font-style: normal;
+}
+.example p {
+    display: inline;
+}
+
+/* ##### Reference handling ##### */
+
+.references ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+.references ul li::before {
+    content: "["attr(author-shorthand)"]";
+    padding-right: 5px;
+}
+.references ul li {
+  padding-left: 3em;
+  text-indent: -3em;
+}
+
+
