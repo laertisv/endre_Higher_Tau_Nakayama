@@ -23,6 +23,17 @@
         }
         return true;
         }
+      /* Toggle sections */
+      function toggleSection(btnCall,idTag) {
+        let elmt = document.getElementById(idTag);
+        if (elmt.style.display === "none") {
+          elmt.style.display = "block";
+          btnCall.innerHTML = "&#9207";
+        } else {
+          elmt.style.display = "none";
+          btnCall.innerHTML = "&#9205"
+        }
+      }
     </script>
     
 </head>
@@ -31,10 +42,11 @@
     <div id="mainText">
     <h1>Find \(\tau_d\)-rigid pairs for Nakayama algebras</h1>
     <p><a href="./index.html">Home</a> | <a href="./construct.html">\(\tau_d\)-rigid pairs</a> | <a href="./mutationgraph.html">Mutation</a></p>
-    <p>This website intends to help illustrate the paper <cite>\(\tau_d\)-tilting theory for Nakayama algebras</cite> [RV24].</p>
+    <p>This is a supplement to the paper <cite>\(\tau_d\)-tilting theory for Nakayama algebras</cite> [RV24].</p>
     <h2>
-      Preliminary
+      Preliminary <span style="color:gray;cursor: pointer;" onclick="toggleSection(this,'textPreliminary')">&#9207</span>
     </h2>
+    <div id="textPreliminary">
     <p>
       We are working with linear Nakayama algebras with homogeneous relations, admitting a \(d\)-cluster tilting subcategory. 
       Specifically, for an algebraically closed field \(\mathbf{k}\), we are working with the algebras \(\Lambda(n,l)=\mathbf{k}\mathbb{A}_n/R^l\), where \(R\) is the arrow ideal of the quiver \(\mathbb{A}_n\) given by
@@ -98,6 +110,7 @@
     <p>
       In [RV24, Theorem A] we show that the maximal amount of summands a \(\tau_d\)-rigid pair of \(\Lambda(n,l)\) can have is \(n\). We invite to try find different pairs attaining this limit in the graph below.
     </p>
+    </div>
 
     <h2>
       Functionality of the graph
