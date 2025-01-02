@@ -68,6 +68,7 @@ function resetGraph(d,p,l,proceed){
     continueButton.hidden = true;
     errBox.innerHTML = "";
     tapOnBackground();
+    toggleEdgeView();
 }
 
 function updateSelectionOnUserInput(){
@@ -121,10 +122,12 @@ function updateSelectionOnUserInput(){
 
 
 function toggleEdgeView(){
-    if (showEdges) {
-        init_style.find(x => x.selector=='edge').style.opacity=1;
-    } else {
-        init_style.find(x => x.selector=='edge').style.opacity=0;
+    let b = document.forms["menuConstructTaudPairForm"];
+    let edgesVisible = b["edgeShow"];
+    let c = cy.filter('edge');
+    c.removeClass('noShow');
+    if (!(edgesVisible.checked)) {
+        c.addClass('noShow');
     }
 }
 
@@ -226,6 +229,9 @@ function tapOnBackground(){
     addRigidButton.title="";
     addSupportButton.title="";
     removeButton.title="";
+
+    cy.remove('edge[id="taud"]');
+    cy.remove('edge[id="taudInv"]');
 }
 
 function selectedSummand(evt) {
@@ -308,6 +314,44 @@ function selectedSummand(evt) {
             addSupportButton.title="This projective summands is in the support of M.";
         }
     }
+    toggleARdTranslate(nodeInfo);
+    
+}
+
+function toggleARdTranslate(nodeInfo){
+    cy.remove('edge[id="taud"]');
+    cy.remove('edge[id="taudInv"]');
+    if (!(nodeInfo.taud==0)){
+        let targetNode =   "M-" + nodeInfo.taud[0] + "-" + nodeInfo.taud[1] ;
+        cy.add(
+            {
+                group: 'edges', 
+                data: {
+                    id: 'taud', 
+                    target: targetNode, 
+                    source: nodeInfo.id, 
+                    selectable: false,
+                },
+                classes: ['taudArrow'],
+            }
+        );
+    }
+    if (!(nodeInfo.taudInverse==0)){
+        let sourceNode =   "M-" + nodeInfo.taudInverse[0] + "-" + nodeInfo.taudInverse[1] ;
+        cy.add(
+            {
+                group: 'edges', 
+                data: {
+                    id: 'taudInv', 
+                    source: sourceNode, 
+                    target: nodeInfo.id, 
+                    selectable: false,
+                },
+                classes: ['taudArrow'],
+            }
+        );
+    }
+
 }
 
 

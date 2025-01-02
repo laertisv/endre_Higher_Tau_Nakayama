@@ -50,7 +50,6 @@ var init_style = [
         selector: 'edge',
         style: {
           'width': 3,
-          'line-color': '#ccc',
           'curve-style': 'bezier',
           'opacity':1,
         }
@@ -60,12 +59,14 @@ var init_style = [
         style: {
             'target-arrow-color': '#ccc',
             'target-arrow-shape': 'data(headType)',
+            'line-color': '#ccc',
         }
     },
     {
         selector: '[lineType]',
         style: {
             'line-style': 'data(lineType)',
+            'line-color': '#ccc',
         }
     },
     {
@@ -111,6 +112,14 @@ var init_style = [
             'font-weight':'bold',
             'color':'black',
             'font-size':30,
+        }
+    },
+    {
+        selector: '.taudArrow',
+        style: {
+            'line-color':'green',
+            'target-arrow-color': 'green',
+            'target-arrow-shape': 'triangle',
         }
     },
 ]

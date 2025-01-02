@@ -103,7 +103,7 @@
       Functionality of the graph
     </h2>
     <p>
-      Below you can generate an algebra \(\Lambda(n,l)\) which admit a \(d\)-cluster tilting subcategory, by choosing \(d\), \(p\) and \(l\) appropriately. The module category will be represented as it's AR-quiver where each vertex is an indecomposable. The darker vertices are indecomposables in the \(d\)-cluster tilting subcategory.
+      Below you can generate an algebra \(\Lambda(n,l)\) which admit a \(d\)-cluster tilting subcategory, by choosing \(d\), \(p\) and \(l\) appropriately. The module category will be represented as it's AR-quiver where each vertex is an indecomposable. The darker vertices are indecomposables in the \(d\)-cluster tilting subcategory. If a selected node got a non-zero \(\tau_d\) or \(\tau_d^-\), they will be shown through a green arrow when selected.
     </p>
     <p>
       In the graph of the AR-quiver you can construct your own \(\tau_d\)-rigid pair, summand by summand. You add summands by either
@@ -148,7 +148,7 @@
             <input type="number" required min="2" max="8" id="constructTaudPair_p" value="4" onkeypress="return isNumberKey(event)"><br>
             <label class="switch">
               <span class="labelSwitch">View morphisms</span>
-              <input type="checkbox" checked="false" name="edgeShow" onchange="showEdges=this.checked;cy.filter('edge').toggleClass('noShow') " autocomplete="off">
+              <input type="checkbox" checked="false" name="edgeShow" onchange="toggleEdgeView()" autocomplete="off">
               <span class="slider"></span>  
             </label> 
 
