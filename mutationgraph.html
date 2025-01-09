@@ -99,8 +99,8 @@
   </p> 
   <p>
     For some more preliminary information on the \(d\)-cluster tilting subcategory of \(\Lambda(n,l)\) and the possibility of constructing your own \(\tau_d\)-rigid pair, visit <a href="./construct.html">here.</a> 
-    Note that a <em>strongly maximal \(\tau_d\)-rigid pair</em> \((M,P)\) is a \(\tau_d\)-rigid pair of \(\mathcal{C}\) such that for any other \(\tau_d\)-rigid pair \((N,Q)\) we have \(|N|+|Q|\leq |M|+|P|\). 
-    We have shown that for \(\Lambda(n,l)\) a \(\tau_d\)-rigid pair \((M,P)\) is strongly maximal if and only if \(|M|+|P|=n\).
+    Note that a <em>summand-maximal \(\tau_d\)-rigid pair</em> \((M,P)\) is a \(\tau_d\)-rigid pair of \(\mathcal{C}\) such that for any other \(\tau_d\)-rigid pair \((N,Q)\) we have \(|N|+|Q|\leq |M|+|P|\). 
+    We have shown that for \(\Lambda(n,l)\) a \(\tau_d\)-rigid pair \((M,P)\) is summand-maximal if and only if \(|M|+|P|=n\).
   </p>
   </div>
   
@@ -111,12 +111,12 @@
   </p>
   <figure class="definition">
     <p>
-      Let \((M,P)\) and \((M',P')\in \mathcal{C}\times \operatorname{proj}\Lambda\) be strongly maximal \(\tau_d\)-rigid pairs of \(\Lambda(n,l)\). 
+      Let \((M,P)\) and \((M',P')\in \mathcal{C}\times \operatorname{proj}\Lambda\) be summand-maximal \(\tau_d\)-rigid pairs of \(\Lambda(n,l)\). 
       If there exists a pair \((N,Q)\in\mathcal{C}\times\operatorname{proj}\Lambda\) that is a summand of both \((M,P)\) and \((M',P')\), and \(|N|+|Q|=n-1\), then \((M,P)\) and \((M',P')\) are <em>mutations of each other</em>.
     </p>
   </figure>
   <p>
-    The first observation we want to share is that the \(\tau_d\)-mutation graph of strongly maximal \(\tau_d\)-rigid pairs (<em>sm-\(\tau_d\)-mutation graph</em> for short) over \(\Lambda(n,l)\) is connected [RV, Proposition 6.10]. 
+    The first observation we want to share is that the \(\tau_d\)-mutation graph of summand-maximal \(\tau_d\)-rigid pairs (<em>sm-\(\tau_d\)-mutation graph</em> for short) over \(\Lambda(n,l)\) is connected [RV, Proposition 6.10]. 
     This is not true in general, see the following example:
   </p>
   
@@ -218,7 +218,7 @@
   <h2 id="mutationGraphLambda93">Mutation graph of \(\Lambda(9,3)\) <span style="color:gray;cursor: pointer;" onclick="toggleSection(this,'textMutation2')">&#9207</span></h2>
 <div id="textMutation2">  
 <p>
-  There are in total \(160\) different strongly maximal \(\tau_2\)-rigid pairs in the \(2\)-cluster tilting subcategory of \(\operatorname{mod}\Lambda(9,3)\). A pair here have at most \(6\) possible mutations and at least \(3\).<br> <a href="./resources/CompleteGraph.pdf">Click here to download pdf</a>.
+  There are in total \(160\) different summand-maximal \(\tau_2\)-rigid pairs in the \(2\)-cluster tilting subcategory of \(\operatorname{mod}\Lambda(9,3)\). A pair here have at most \(6\) possible mutations and at least \(3\).<br> <a href="./resources/CompleteGraph.pdf">Click here to download pdf</a>.
 </p>
   <object class="pdf" data="./resources/CompleteGraph.pdf">
   </object>
@@ -238,7 +238,7 @@
   </p>
   <img src="./resources/ARQuiverAuslanderA3.png" width="100%" alt="Auslander Reiten quiver of the Auslander algebra of type linear A3" class="commutativeDiagram">
   <p>
-    There are in total \(40\) strongly maximal \(\tau_2\)-rigid pairs. The nodes in the sm-\(\tau_2\)-mutation graph have either 3 or 4 edges. <br> <a href="./resources/mutationGraphAuslanderA3.pdf">Click here to download pdf</a>.
+    There are in total \(40\) summand-maximal \(\tau_2\)-rigid pairs. The nodes in the sm-\(\tau_2\)-mutation graph have either 3 or 4 edges. <br> <a href="./resources/mutationGraphAuslanderA3.pdf">Click here to download pdf</a>.
   </p>
   <object class="pdf" data="./resources/mutationGraphAuslanderA3.pdf">,
   </object>
@@ -256,7 +256,9 @@
 
 <script>
     drawARquiver(2,4,3,"displayDivForARQuiver");
-    document.getElementById("showUpdated").innerHTML = document.lastModified;
+    let modDate = new Date(document.lastModified);
+    var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute:'numeric', hour12:false, timeZoneName: 'short' };
+    document.getElementById("showUpdated").innerHTML = modDate.toLocaleDateString("en-US", options);
 </script>
 </body>
 </html>

@@ -26,7 +26,7 @@
         Basic information on \(\tau_d\)-rigid pairs in \(\Lambda(n,l)\) and an interactive AR-quiver to construct \(\tau_d\)-rigid pairs of \(\Lambda(n,l)\) is available here: <a href="./construct.html">Construct your own pair.</a>
       </li>
       <li>
-        Basic information of mutation of strongly maximal \(\tau_d\)-rigid pairs, examples and an interactive AR-quiver for you to mutate can be found here: <a href="./mutationgraph.html">Mutate pairs.</a>
+        Basic information of mutation of summand-maximal \(\tau_d\)-rigid pairs, examples and an interactive AR-quiver for you to mutate can be found here: <a href="./mutationgraph.html">Mutate pairs.</a>
       </li>
     </ul>
 
@@ -61,7 +61,9 @@ Algebra <span style="font-weight: bold;">622</span> (2023), 98–133, <a href="h
   </div>
 
   <script>
-    document.getElementById("showUpdated").innerHTML = document.lastModified;
+    let modDate = new Date(document.lastModified);
+    var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute:'numeric', hour12:false, timeZoneName: 'short' };
+    document.getElementById("showUpdated").innerHTML = modDate.toLocaleDateString("en-US", options);
   </script>
 </body>
 </html>

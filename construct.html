@@ -235,6 +235,8 @@
         container: document.getElementById('displayDivForARQuiver')
   });
   drawARquiver(2,4,3,'displayDivForARQuiver');
-  document.getElementById("showUpdated").innerHTML = document.lastModified;
+  let modDate = new Date(document.lastModified);
+  var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute:'numeric', hour12:false, timeZoneName: 'short' };
+  document.getElementById("showUpdated").innerHTML = modDate.toLocaleDateString("en-US", options);
 </script>
 </html>
