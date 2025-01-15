@@ -2,8 +2,46 @@
 <html>
 <body>
 
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+<div class="runningText">
+<h1>Mutation of \(\tau_d\)-tilting pairs</h1>
+<p id="lastUpdate">Last updated: <span id="showUpdated"></span></p>
+<p><a href="./index.html">Home</a> | <a href="./construct.html">\(\tau_d\)-rigid pairs</a> | <a href="./mutationgraph.html">Mutation</a></p>
+<p>This is a supplement to the paper <cite>\(\tau_d\)-tilting theory for Nakayama algebras</cite> [RV24].</p>
+
+
+<h2>
+Preliminary <span style="color:gray;cursor: pointer;" onclick="toggleSection(this,'textPreliminary')">&#9207</span>
+</h2>
+<div id="textPreliminary">
+<p>
+We are working with linear Nakayama algebras with homogeneous relations, admitting a \(d\)-cluster tilting subcategory \(\mathcal{C}\).
+Specifically, for an algebraically closed field \(\mathbf{k}\), we are working with the algebras \(\Lambda(n,l)=\mathbf{k}\mathbb{A}_n/R^l\), where \(R\) is the arrow ideal of the quiver \(\mathbb{A}_n\) given by
+$$ n\longrightarrow n-1 \longrightarrow \cdots \longrightarrow 2 \longrightarrow 1 .$$
+The indecomposable modules of \(\operatorname{mod}\Lambda\) are uniquely given through their support on \(\mathbb{A}_n\), which can be described as subintervals of \([1,n]\).
+Hence, they will be denoted by \(M(a,b)\), where \([a,b]\) is their support-interval.
+</p>
+<p>
+For some more preliminary information on the \(d\)-cluster tilting subcategory of \(\Lambda(n,l)\) and the possibility of constructing your own \(\tau_d\)-rigid pair, visit <a href="./construct.html">here.</a>
+Note that a <em>summand-maximal \(\tau_d\)-rigid pair</em> \((M,P)\) is a \(\tau_d\)-rigid pair of \(\mathcal{C}\) such that for any other \(\tau_d\)-rigid pair \((N,Q)\) we have \(|N|+|Q|\leq |M|+|P|\).
+We have shown that for \(\Lambda(n,l)\) a \(\tau_d\)-rigid pair \((M,P)\) is summand-maximal if and only if \(|M|+|P|=n\).
+</p>
+</div>
+
+<h2>Mutation <span style="color:gray;cursor: pointer;" onclick="toggleSection(this,'textMutation1')">&#9207</span></h2>
+<div id="textMutation1">
+<p>
+The paper [RV24] only deals with the concept of mutation on a surface level, however as it bears witness of the over-arching structure we provide some of our findings here.
+</p>
+<figure class="definition">
+<p>
+Let \((M,P)\) and \((M',P')\in \mathcal{C}\times \operatorname{proj}\Lambda\) be summand-maximal \(\tau_d\)-rigid pairs of \(\Lambda(n,l)\).
+If there exists a pair \((N,Q)\in\mathcal{C}\times\operatorname{proj}\Lambda\) that is a summand of both \((M,P)\) and \((M',P')\), and \(|N|+|Q|=n-1\), then \((M,P)\) and \((M',P')\) are <em>mutations of each other</em>.
+</p>
+</figure>
+<p>
+The first observation we want to share is that the \(\tau_d\)-mutation graph of summand-maximal \(\tau_d\)-rigid pairs (<em>sm-\(\tau_d\)-mutation graph</em> for short) over \(\Lambda(n,l)\) is connected [RV, Proposition 6.10].
+This is not true in general, see the following example:
+</p>
 
 </body>
 </html>
