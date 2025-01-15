@@ -118,6 +118,63 @@ This map is injective but not surjective.
 However, this map has a partial inverse obtained by sending a summand-maximal \(\tau_d\)-rigid pair to the smallest torsion class which contains it. 
 </p>
 
+<h2>
+    Finding \(d\)-torsion classes
+  </h2>
+  <p>
+    Below you can generate an algebra \(\Lambda(n,l)\) which admit a \(d\)-cluster tilting subcategory, by choosing \(d\), \(p\) and \(l\) appropriately. The module category will be represented as it's AR-quiver where each vertex is an indecomposable. The darker vertices are indecomposables in the \(d\)-cluster tilting subcategory.
+  </p>
+  <p>
+    With a given \(\tau_d\)-rigid pair \((M,P\)) with \(n\) summands, you can press a button to obtain the smallest \(d\)-torsion class containing it. 
+    You can introduce a pair \((M,P)\) with \(n\) summands of your choosing, given through a list of it's summands.
+    You can obtain this list via the page <a href="./construct.html">\(\tau_d\)-rigid pairs</a>.
+    </ol>
+    Nodes selected as a summand of \(M\) will be colored <span class="rigidText">red</span>, and nodes selected as a summand of \(P\) will be colored <span class="supportText">blue</span>.     
+  </p>
+</div>
+<div id="menuChooseAlgebra">
+  <h4>Choose an algebra</h4>
+        <form name="menuConstructTaudPairForm" action="">
+            <label for="constructTaudPair_d">\(d=\)</label>
+            <input type="number" required min="2" max="6" id="constructTaudPair_d" value="2" onkeypress="return isNumberKey(event)">
+            <label for="constructTaudPair_l">\(l=\)</label>
+            <input type="number" required min="2" max="8" id="constructTaudPair_l" value="3" onkeypress="return isNumberKey(event)">
+            <label for="constructTaudPair_p">\(p=\)</label>
+            <input type="number" required min="2" max="8" id="constructTaudPair_p" value="4" onkeypress="return isNumberKey(event)"><br>
+            <label class="switch">
+              <span class="labelSwitch">View morphisms</span>
+              <input type="checkbox" checked="false" name="edgeShow" onchange="showEdges=this.checked;cy.filter('edge').toggleClass('noShow') " autocomplete="off">
+              <span class="slider"></span>  
+            </label> 
+
+            <button type="button" class="updateButton" onclick="updateARquiverOnInput()"> Update</button><br>
+            <span id="ErrorMessageConstructMenu" ></span><br>
+            <button type="button" hidden id="resetConfirmation">Proceed</button>
+            <button type="button" hidden id="resetCancel">Cancel</button>
+        </form>
+        <h4>Choose a pair to start mutating from</h4>
+        <button id="MutateFromRigid" title="Start with \((\Lambda,0)\)" onclick="startWithRigid()">Start with \((\Lambda,0)\)</button>
+        <button id="MutateFromSupport" title="Start with \((0,\Lambda)\)" onclick="startWithSupport()">Start with \((0,\Lambda)\)</button>
+        <button id="MutateFromOwnSelection" title="Start with user selection" onclick="startWithChosen()">Start with \((M,P)\)</button>
+        <form name="menuChooseOwnMutationStart" action="">
+          <label for="chooseRigidSummands" class="rigidText">\(M=\)</label>
+          <input type="text" id="chooseRigidSummands">
+          <label for="chooseSupportSummands" class="supportText">\(P=\)</label>
+          <input type="text" id="chooseSupportSummands">
+        </form>
+        <span id="ErrorMessageOwnSelection" ></span><br>
+</div>
+<div id="displayDivForARQuiver"></div>
+<div id="menuMutate">
+<button id="MutateButton" title="Mutate at selected summand" disabled>Mutate at \(X\)</button>
+<button id="undoMutateButton" title="Undo mutation" disabled>Undo</button>
+</div>
+
+
+
+
+
+    
 <div class="references">
       <h2>References</h2>
       <ul>
