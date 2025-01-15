@@ -105,15 +105,18 @@ We have shown that for \(\Lambda(n,l)\) a \(\tau_d\)-rigid pair \((M,P)\) is sum
 </p>
 </div>
 
-<h2>Mutation <span style="color:gray;cursor: pointer;" onclick="toggleSection(this,'textMutation1')">&#9207</span></h2>
+<h2>\(d\)-torsion classes <span style="color:gray;cursor: pointer;" onclick="toggleSection(this,'textMutation1')">&#9207</span></h2>
 <div id="textMutation1">
 <p>
-The paper [RV24] only deals with the concept of mutation on a surface level, however as it bears witness of the over-arching structure we provide some of our findings here.
+Higher torsion classes where introduced in [Jør16] using the following definition. 
 </p>
 <figure class="definition">
 <p>
-Let \((M,P)\) and \((M',P')\in \mathcal{C}\times \operatorname{proj}\Lambda\) be summand-maximal \(\tau_d\)-rigid pairs of \(\Lambda(n,l)\).
-If there exists a pair \((N,Q)\in\mathcal{C}\times\operatorname{proj}\Lambda\) that is a summand of both \((M,P)\) and \((M',P')\), and \(|N|+|Q|=n-1\), then \((M,P)\) and \((M',P')\) are <em>mutations of each other</em>.
+We say that \(\mathcal{U}\subseteq \mathcal{C}\) is a <em>\(d\)-torsion class</em> if for every \(C\in\mathcal{C}\) there exists a \(d\)-extension
+$$ 0\longrightarrow U \longrightarrow C \longrightarrow C_1 \longrightarrow \cdots \longrightarrow C_d \longrightarrow 0 $$
+such that \(U\in\mathcal{U}\) and, for every \(U'\in\mathcal{U}\), the induced sequence
+$$	0 \longrightarrow \operatorname{Hom}{\Lambda}{U'}{C_1} \longrightarrow \cdots & \operatorname{Hom}{\Lambda}{U'}{C_d} \longrightarrow 0 $$
+is exact.
 </p>
 </figure>
 <p>
