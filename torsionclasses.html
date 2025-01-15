@@ -121,5 +121,11 @@ The first observation we want to share is that the \(\tau_d\)-mutation graph of 
 This is not true in general, see the following example:
 </p>
 
+<script>
+    let modDate = new Date(document.lastModified);
+    var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute:'numeric', hour12:false, timeZoneName: 'short' };
+    document.getElementById("showUpdated").innerHTML = modDate.toLocaleDateString("en-US", options);
+  </script>
+
 </body>
 </html>
